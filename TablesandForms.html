@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="UTF-8">
+<title>Tables and Forms</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<head>
+    <h1>Pizza Ordering Form</h1>
+    <style>
+        table, th, td {
+        border: 1px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <form>
+
+    <h2>Contact Information</h2>
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required><br>
+        <label for="phone">Phone:</label>
+        <input type="text" id="phone" name="phone" required><br>
+        <label for="phone">Email:</label>
+        <input type="text" id="email" name="email" required><br>
+
+    <h2>Select Pizza Size</h2>
+        <label for="size">Pizza Size:</label>
+        <select name="size" id="size" required>
+        <option value="Select" selected disabled>--Select Size--</option>
+        <option value="Medium">Medium</option>
+        <option value="Large">Large</option>
+        <option value="XLarge">XLarge</option>
+        </select> 
+
+    <h2>Select Sauce</h2>
+        <input type="radio" id="html" name="sauce" value="Marinara">
+        <label for="Marinara">Marinara</label><br>
+        <input type="radio" id="Ranch" name="sauce" value="Ranch">
+        <label for="Ranch">Ranch</label><br>
+        <input type="radio" id="None" name="sauce" value="None" selected>
+        <label for="None">No Sauce</label>
+
+    <h2>Select Toppings</h2>
+        <input type="checkbox" id="Topping1" name="Topping1" value="Pepperoni">
+        <label for="Topping1"> Pepperoni</label>
+        <input type="checkbox" id="Topping2" name="Topping2" value="Mushroom">
+        <label for="Topping2"> Mushroom</label><br>
+        <input type="checkbox" id="Topping3" name="Topping3" value="Peppers">
+        <label for="Topping3"> Peppers</label>
+        <input type="checkbox" id="Topping4" name="Topping4" value="Tomatoes">
+        <label for="Topping4"> Tomatoes</label><br>
+        <input type="checkbox" id="Topping5" name="Topping5" value="Onions">
+        <label for="Topping5"> Onions</label>
+        <input type="checkbox" id="Topping6" name="Topping6" value="Spinach">
+        <label for="Topping6"> Spinach</label>
+         
+
+    <h2>Additional Instructions</h2>
+        <label for="addi"></label>
+        <input type="textbox" id="addi" name="addi" value="Add instructions"><br>
+
+     <input type="submit" value="Submit"> 
+
+     </form>
+     <br>
+
+     <p>List of My Favorite Games</p><br>
+
+     <table>
+        <tr>
+            <th>Developer</th>
+            <th>Title</th>
+            <th>Year</th>
+        </tr>
+        <tr>
+            <td rowspan="2">Square Enix</td>
+            <td>Dragon Quest VII</td>
+            <td>2001</td>
+        </tr>
+        <tr>
+            <td>Bravely Default</td>
+            <td>2012</td>
+        </tr>
+        <tr>
+            <td>Monolith </td>
+            <td>Xenoblade Chronicles</td>
+            <td>2015</td>
+        </tr>
+        <tr>
+            <td>Bethseda</td>
+            <td>Elder Scrolls V: Skyrim</td>
+            <td>2011</td>
+        </tr>
+        <tr>
+            <td colspan ="3">Count: 4</td>
+        </tr>
+
+    </table>
+
+    
+</body>
+</html>
