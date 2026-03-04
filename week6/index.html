@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Pokemon Team Builder</title>
+    <link rel="stylesheet" href="pokestyle.css">
+  </head>
+
+  <body>
+    <div id="app">
+      <h2>Pokemon Team Builder</h2>
+
+      <div id="searchArea">
+        <label>Name or ID<br>
+          <input type="text" id="pokeInput" />
+          <button id="findButton">Find</button>
+        </label>
+      </div>
+
+      <div id="pokeDisplay"></div>
+
+      <div id="movesArea" style="display:none">
+        <select id="move1"></select>
+        <select id="move2"></select>
+        <select id="move3"></select>
+        <select id="move4"></select>
+      </div>
+
+      <button id="addButton" style="display:none">Add to Team</button>
+
+      <div id="teamList"></div>
+    </div>
+
+    <script>
+      const cache = {};
+
+      const findBtn = document.getElementById('findButton');
+      const addBtn = document.getElementById('addButton');
+      const movesArea = document.getElementById('movesArea');
+      const display = document.getElementById('pokeDisplay');
+
+      let currentSprite = '';
+      let currentName = '';
+
+      findBtn.addEventListener('click', fetchPokemon);
+      document.getElementById('pokeInput').addEventListener('keydown', e => {
+        if (e.key === 'Enter') fetchPokemon();
+      });
+
+      async function fetchPokemon() {
+        const query = document.getElementById('pokeInput').value.trim().toLowerCase();
+        if (!query) return;
+
+        display.innerHTML = '<p>Loading...</p>';
+        movesArea.style.display = 'none';
+        addBtn.style.display = 'none';
+
+        try {
+          let data;
+          if (cache[query]) {
+            data = cache[query];
+          } else {
+            const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${query}`);
+            if (!res.ok) throw new Error('Pokemon could not be found');
+            data = await res.json();
+            cache[query] = data;
+          }
+
+          currentSprite = data.sprites.front_default;
+          currentName = data.name;
+
+          const img = document.createElement('img');
+          img.src = currentSprite;
+          img.alt = currentName;
+
+          const cry = data.cries?.latest || data.cries?.legacy || '';
+          const audio = document.createElement('audio');
+          audio.controls = true;
+          if (cry) {
+            const source = document.createElement('source');
+            source.src = cry;
+            audio.appendChild(source);
+          }
+
+          display.innerHTML = '';
+          display.appendChild(img);
+          display.appendChild(document.createElement('br'));
+          display.appendChild(audio);
+
+          const moves = data.moves.map(m => m.move.name);
+          ['move1','move2','move3','move4'].forEach(id => {
+            const sel = document.getElementById(id);
+            sel.innerHTML = '';
+            moves.forEach(move => {
+              const opt = document.createElement('option');
+              opt.value = move;
+              opt.textContent = move;
+              sel.appendChild(opt);
+            });
+          });
+
+          movesArea.style.display = 'grid';
+          addBtn.style.display = 'block';
+
+        } catch (err) {
+          display.innerHTML = `<p style="color:red;">${err.message}</p>`;
+        }
+      }
+
+      addBtn.addEventListener('click', () => {
+        const selectedMoves = [
+          document.getElementById('move1').value,
+          document.getElementById('move2').value,
+          document.getElementById('move3').value,
+          document.getElementById('move4').value,
+        ];
+
+        const entry = document.createElement('div');
+        entry.className = 'teamEntry';
+
+        const img = document.createElement('img');
+        img.src = currentSprite;
+        img.alt = currentName;
+
+        const ul = document.createElement('ul');
+        selectedMoves.forEach(move => {
+          const li = document.createElement('li');
+          li.textContent = move;
+          ul.appendChild(li);
+        });
+
+        entry.appendChild(img);
+        entry.appendChild(ul);
+        document.getElementById('teamList').appendChild(entry);
+      });
+    </script>
+  </body>
+</html>

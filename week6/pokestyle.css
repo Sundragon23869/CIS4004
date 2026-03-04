@@ -1,0 +1,130 @@
+body {
+  background-color:lavender;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 50px;
+  padding: 50px;
+  font-family:Georgia, 'Times New Roman', Times, serif;
+}
+
+#app {
+  background: rgb(229, 200, 243);
+  border: 4px solid rgb(55, 7, 72);
+  padding: 10px 20px;
+  width: 500px;
+  min-height: 100px;
+  
+}
+
+h2 {
+  text-align: center;
+  color: rgb(55, 7, 72);
+  font-size: 40px;
+}
+
+#searchArea {
+  text-align: center;
+  color: rgb(55, 7, 72);
+  font-weight: bold;
+  font-size: 25px;
+}
+
+#pokeInput {
+  border: 2px solid rgb(55, 7, 72);
+  border-radius: 5px;
+  padding: 5px 12px;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  outline: none;
+}
+
+#findButton {
+  background-color: rgb(98, 5, 198);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+#findButton:hover {
+  background-color: rgb(55, 7, 72);
+}
+
+#pokeDisplay {
+  text-align: center;
+  min-height: 150px;
+}
+
+#pokemonDisplay img {
+  width: 150px;
+}
+
+#movesArea {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+  margin: 10px 0;
+}
+
+#movesArea select {
+  width: 100%;
+  padding: 4px;
+  border: 2px solid rgb(55, 7, 72);
+  border-radius: 5px;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  background-color: white;
+  color: rgb(55, 7, 72);
+  
+}
+
+#addButton {
+  display: block;
+  margin: 10px auto;
+  background-color: rgb(98, 5, 198);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+#addButton:hover {
+  background-color: rgb(55, 7, 72);
+}
+
+#teamList {
+  margin-top: 10px;
+  align-items: center;
+}
+
+.teamEntry {
+  display: flex;
+  align-items: center;
+  border: 2px solid rgb(55, 7, 72);
+  border-radius: 5px;
+  background-color:white;
+  padding: 8px;
+  margin-bottom: 8px;
+  gap: 10px;
+}
+
+.teamEntry img {
+  width: 70px;
+  align-items: center;
+  text-align: center;
+  padding-left: 90px;
+}
+
+.teamEntry ul {
+  margin: 0;
+  font-size: 14px;
+  color: rgb(55, 7, 72);
+  text-align: center;
+}
